@@ -120,6 +120,13 @@ public class PlayerInteract implements Listener {
                             || (Properties.ALLOW_LEFT_CLICK_DESTROYING && action == LEFT_CLICK_BLOCK)) {
                         return;
                     }
+
+                    // Firestarter start :: allow dyeing shop signs
+                    if (action == RIGHT_CLICK_BLOCK && event.getPlayer().getInventory().getItemInMainHand().getType().toString().contains("_DYE")) {
+                        return;
+                    }
+                    // Firestarter end
+
                     event.setCancelled(true);
                     showChestGUI(player, block, sign);
                     return;
