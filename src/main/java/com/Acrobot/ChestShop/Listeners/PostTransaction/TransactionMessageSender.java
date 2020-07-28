@@ -24,6 +24,7 @@ public class TransactionMessageSender implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public static void onTransaction(TransactionEvent event) {
         if (event.getTransactionType() == TransactionEvent.TransactionType.BUY) {
+            if (xyz.nkomarn.kerosene.data.Toggle.get(event.getOwner().getUniqueId(), "shop-notifications"))
             sendBuyMessage(event);
         } else {
             sendSellMessage(event);

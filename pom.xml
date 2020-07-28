@@ -318,6 +318,14 @@
             <version>0.1.0.10</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Firestarter :: Kerosene dependency -->
+        <dependency>
+            <groupId>xyz.nkomarn</groupId>
+            <artifactId>Kerosene</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
