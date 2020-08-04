@@ -23,8 +23,12 @@ import java.util.Map;
 public class TransactionMessageSender implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public static void onTransaction(TransactionEvent event) {
+        // Firestarter start :: implement shop notifications toggle
+        if (!xyz.nkomarn.kerosene.data.Toggle.get(event.getOwner().getUniqueId(), "shop-notifications")) {
+            return;
+        }
+        // Firestarter end
         if (event.getTransactionType() == TransactionEvent.TransactionType.BUY) {
-            if (xyz.nkomarn.kerosene.data.Toggle.get(event.getOwner().getUniqueId(), "shop-notifications"))
             sendBuyMessage(event);
         } else {
             sendSellMessage(event);
