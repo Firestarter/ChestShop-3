@@ -20,6 +20,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Container;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -132,6 +133,7 @@ public class PlayerInteract implements Listener {
                     return;
                 }
                 // don't allow owners or people with access to buy/sell at this shop
+                Messages.TRADE_DENIED_ACCESS_PERMS.sendWithPrefix(player);
                 return;
             }
         }
@@ -202,7 +204,7 @@ public class PlayerInteract implements Listener {
 
         int amount = -1;
         try {
-            amount = Integer.parseInt(quantity);
+            amount = QuantityUtil.parseQuantity(quantity);
         } catch (NumberFormatException notANumber) {}
 
         if (amount < 1 || amount > Properties.MAX_SHOP_AMOUNT) {
@@ -282,6 +284,10 @@ public class PlayerInteract implements Listener {
         }
 
         if (!Security.canAccess(player, signBlock)) {
+            return;
+        }
+        
+        if (!Security.canAccess(player, container.getBlock())) {
             return;
         }
 
