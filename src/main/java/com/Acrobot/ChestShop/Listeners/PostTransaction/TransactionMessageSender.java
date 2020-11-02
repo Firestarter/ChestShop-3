@@ -24,7 +24,8 @@ public class TransactionMessageSender implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public static void onTransaction(TransactionEvent event) {
         // Firestarter start :: implement shop notifications toggle
-        if (!xyz.nkomarn.kerosene.data.Toggle.get(event.getOwner().getUniqueId(), "shop-notifications")) {
+        com.firestartermc.kerosene.user.User user = com.firestartermc.kerosene.Kerosene.getKerosene().getUserManager().getUser(event.getOwner().getUniqueId());
+        if (user != null && !user.getToggles().getState("shop-notifications")) {
             return;
         }
         // Firestarter end

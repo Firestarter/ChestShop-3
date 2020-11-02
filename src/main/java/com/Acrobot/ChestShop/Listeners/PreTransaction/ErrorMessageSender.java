@@ -88,7 +88,12 @@ public class ErrorMessageSender implements Listener {
             case NOT_ENOUGH_STOCK_IN_CHEST:
                 if (Properties.SHOW_MESSAGE_OUT_OF_STOCK && !Properties.CSTOGGLE_TOGGLES_OUT_OF_STOCK || !Toggle.isIgnoring(event.getOwnerAccount().getUuid())) {
                     Location loc = event.getSign().getLocation();
-                    if (xyz.nkomarn.kerosene.data.Toggle.get(event.getOwner().getUniqueId(), "shop-notifications")) // Firestarter :: implement shop notifications toggle
+                    // Firestarter start :: implement shop notifications toggle
+                    com.firestartermc.kerosene.user.User user = com.firestartermc.kerosene.Kerosene.getKerosene().getUserManager().getUser(event.getOwner().getUniqueId());
+                    if (user != null && !user.getToggles().getState("shop-notifications")) {
+                        break;
+                    }
+                    // Firestarter end
                     sendMessageToOwner(event.getOwnerAccount(), NOT_ENOUGH_STOCK_IN_YOUR_SHOP, new String[]{
                             "price", Economy.formatBalance(event.getExactPrice()),
                             "buyer", event.getClient().getName(),

@@ -325,9 +325,9 @@
 
         <!-- Firestarter :: Kerosene dependency -->
         <dependency>
-            <groupId>xyz.nkomarn</groupId>
+            <groupId>com.firestartermc</groupId>
             <artifactId>Kerosene</artifactId>
-            <version>LATEST</version>
+            <version>5.0</version>
         </dependency>
         <dependency>
             <groupId>me.crafter.mc</groupId>
